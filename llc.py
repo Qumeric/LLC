@@ -58,7 +58,7 @@ def llc(X, C = None, k = None, beta = 1e-6, **kwargs):
        idx = I[i,:]
        z = C[idx,:] - np.tile(X[i,:], (k, 1))  # shift ith pt to origin
        Z = np.dot(z,z.T)                       # local covariance
-       Z = Z + II*beta*np.trace(Z);            # regularlization (K>D)
+       Z = Z + II*beta*np.trace(D);            # regularlization (K>D)
        w = np.linalg.solve(Z,ones)     #np.dot(np.linalg.inv(Z), ones)
        w = w/np.sum(w)                         # enforce sum(w)=1       
        G[i,idx] = w.ravel()
